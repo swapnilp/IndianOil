@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   resources :jobs
+  get '/job/:id/job_activity/:job_activity_id' => 'jobs#move_activity', as: 'move_activity'
+
   root 'jobs#index'
 
   # Example of regular route:

@@ -1,0 +1,27 @@
+<% while activity.present? %>
+<tr style="color:#000;">
+  <td>1</td>
+  <td class="center"><%= activity.activity.name %></td>
+  <td class="center"><%= activity.user_name %></td>
+  <td class="center"><%= activity.pre_activity.try(:activity).try(:name) %></td>
+  <td class="center"><%= activity.duration %> Days</td>
+  <td class="center">
+    <span class="label-success label label-default"><%= activity.status %></span>
+  </td>
+  <td class="center">
+    
+    <a class="btn btn-info moveActivity" data-href="/job/<%=job.id%>/job_activity/<%=activity.id%>?&act_action=up" onclick="moveActivity(this);"> 
+      <i class="glyphicon glyphicon-arrow-up icon-white"></i>
+    </a>
+    <a class="btn btn-info" data-href="/job/<%=job.id%>/job_activity/<%=activity.id%>?&act_action=down" onclick="moveActivity(this);">
+      <i class="glyphicon glyphicon-arrow-down icon-white"></i>
+      
+    </a>
+    <a class="btn btn-danger" href="#">
+      <i class="glyphicon glyphicon-trash icon-white"></i>
+      
+    </a>
+  </td>
+</tr>
+<%- activity = activity.next_activity %>
+<%- end %>

@@ -14,3 +14,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+
+
+function  moveActivity(self){
+    $.get($(self).data('href'), function(data){
+	$(".activityTabel tbody").html(""+data.html);
+    },function(){}, "JSON")
+}

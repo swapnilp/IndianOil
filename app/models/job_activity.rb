@@ -42,8 +42,15 @@ class JobActivity < ActiveRecord::Base
         nxt_act.update_attributes({previous_activity: prev_act.id})
       end
     end
-    
   end
 
+
+  def move_action(action)
+    if action == 'up'
+      self.move_previous
+    elsif action == 'down'
+      self.move_next
+    end
+  end
   
 end

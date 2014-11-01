@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 20141101153226) do
     t.boolean  "is_background"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "capacity"
     t.string   "activity_type"
   end
 
@@ -41,7 +40,6 @@ ActiveRecord::Schema.define(version: 20141101153226) do
     t.integer  "activity_id"
     t.string   "status",            default: "PENDING"
     t.string   "activity_type"
-    t.string   "capacity"
   end
 
   create_table "jobs", force: true do |t|
@@ -53,6 +51,7 @@ ActiveRecord::Schema.define(version: 20141101153226) do
     t.integer  "present_activity"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "capacity"
   end
 
   create_table "users", force: true do |t|

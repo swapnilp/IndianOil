@@ -82,7 +82,7 @@
             </div>
           </div>
         </div>
-        <table class="table table-striped table-bordered table-responsive">
+        <table class="table table-striped table-bordered table-responsive activityTabel">
           <thead>
             <tr>
               <th>Sr.No.</th>
@@ -95,39 +95,7 @@
             </tr>
           </thead>
           <tbody>
-	    <%- activity = @master_activity   %>
-	    <% while activity.present? %>
-            <tr style="color:#000;">
-              <td>1</td>
-              <td class="center"><%= activity.activity.name %></td>
-              <td class="center"><%= activity.user_name %></td>
-              <td class="center"><%= activity.pre_activity.try(:activity).try(:name) %></td>
-              <td class="center"><%= activity.duration %> Days</td>
-              <td class="center">
-                <span class="label-success label label-default"><%= activity.status %></span>
-              </td>
-              <td class="center">
-                
-                <a class="btn btn-info" href="#">
-                  <i class="glyphicon glyphicon-arrow-up icon-white"></i>
-                  
-                </a>
-                <a class="btn btn-info" href="#">
-                  <i class="glyphicon glyphicon-arrow-down icon-white"></i>
-                  
-                </a>
-                <a class="btn btn-info" href="#">
-                  <i class="glyphicon glyphicon-edit icon-white"></i>
-                  
-                </a>
-                <a class="btn btn-danger" href="#">
-                  <i class="glyphicon glyphicon-trash icon-white"></i>
-                  
-                </a>
-              </td>
-            </tr>
-	    <%- activity = activity.next_activity %>
-            <%- end %>
+	    <%= render partial: "activity", locals: {activity: @master_activity, job: @job} %>
           </tbody>
         </table>
       </div>
