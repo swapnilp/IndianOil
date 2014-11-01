@@ -10,23 +10,28 @@ class JobActivity < ActiveRecord::Base
   def move_next
     next_act = self.next_activity
     if next_act.present?
+      next_act.update_attributes({start_date: self.start_date, end_date: self.start_date + next_act.duration.days})
+      self.update_attributes({start_date: next_act.end_date, end_date: next_act.end_date + self.duration.days})
+
       next_next_act = next_act.next_activity
       self_pre_id = self.previous_activity
       next_pre_id = next_act.id
       
       self.update_attributes({previous_activity: next_pre_id})
       next_act.update_attributes({previous_activity: self_pre_id})
+
       if next_next_act.present?
         next_next_act.update_attributes({previous_activity: self.id})
       end
     end
   end
-
+  
   def move_previous
     prev_act = self.pre_activity
     if prev_act.present?
+      self.update_attributes({start_date: prev_act.start_date, end_date: prev_act.start_date + self.duration.days})
+      prev_act.update_attributes({start_date: self.end_date, end_date: self.end_date + prev_act.duration.days})
       nxt_act = self.next_activity
-      
       self_pre_id = self.previous_activity
       pre_pre_id = prev_act.previous_activity
 
