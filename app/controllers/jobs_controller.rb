@@ -4,7 +4,7 @@ class JobsController < ApplicationController
     @jobs = Job.all.order("id desc").paginate(:page => params[:page])
   end
   
-
+  
   def show
     @jobs = Job.select([:id, :name])
     @job = Job.where(id: params[:id]).first
