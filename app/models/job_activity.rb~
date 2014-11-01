@@ -1,0 +1,30 @@
+class JobActivity < ActiveRecord::Base
+
+  belongs_to :pre_activity, class_name: "JobActivity", foreign_key: :previous_activity
+  has_one :next_activity, class_name: "JobActivity", foreign_key: :previous_activity
+  belongs_to :job
+  belongs_to :activity
+  scope :master_activity, lambda{ where(previous_activity: nil) }
+
+
+  def move_next
+    nxt_act = self.next_activity
+    nxt_one_act = nxt_act.try(:next_activity)
+    if nxt_act.present?
+      nxt_pre_id = nxt_act.previous_activity
+      self_pre_id = self.previous_activity
+      self.update_attributes({previous_activity: nxt_pre_id}) 
+      nxt_act.update_attributes({previous_activity: self_pre_id})
+      if nxt_one_act.present?
+        nxt_one_act.update_attributes({previous_activity: self.id})
+      end
+    else
+      p "!!!!!!!!!!!!!!!!"
+    end
+  end
+
+  def move_previous
+  end
+
+  
+end

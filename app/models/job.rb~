@@ -1,0 +1,16 @@
+class Job < ActiveRecord::Base
+  has_many :job_activities
+
+  after_create :create_job_activity
+  
+  
+  def create_job_activity
+    Activity.all.each do |activity|
+      self.job_activities.build({previous_activity: activity.previous_activity, duration: activity.duration, user_id: activity.user_id, start_date: self.job_activity.last.try(:end_date) || self.start_date, end_date: (self.job_activity.last.try(:end_date) || self.start_date) + activity.duration.days, user_name: activity.user_name, is_background: activity.is_background })
+    end
+  end
+    
+  
+
+  
+end

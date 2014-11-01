@@ -1,0 +1,4 @@
+class AddActivityToJobActivity < ActiveRecord::Migration
+  def change
+  end
+end
