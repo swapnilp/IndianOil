@@ -1,6 +1,6 @@
 <% while activity.present? %>
 <tr style="color:#000;">
-  <td>1</td>
+  <td><%= activity.activity.id %></td>
   <td class="center"><%= activity.activity.name %></td>
   <td class="center"><%= activity.user_name %></td>
   <td class="center"><%= activity.pre_activity.try(:activity).try(:name) %></td>
