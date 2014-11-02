@@ -28,6 +28,7 @@ class JobsController < ApplicationController
     params.permit!
     job = Job.new(params[:job])
     job.save
+    job.job_activities.master_activity.first.update_attributes({status: "PENDING"})
     redirect_to jobs_path(job)
   end
   
