@@ -53,4 +53,24 @@ class JobActivity < ActiveRecord::Base
     end
   end
   
+  def done_job
+    self.update_attributes({status: "DONE"})
+    self.next_activity.update_attributes({status: "PENDING"}) if self.next_activity.present?
+  end
+
+  def rejected_job(rej_id)
+    rej_activity = self
+    
+    while rej_activity.id != rej_id
+      rej_activity.update_attributes({status: "REJECTED", remark: "REJECTED ON #{self.activity.name}"})
+      rej_activity = rej_activity.pre_activity
+    end
+    
+    rej_activity.update_attributes({status: "PENDING", remark: "REJECTED ON #{self.activity.name}"})
+  end
+
+  def wip_job
+    self.update_attributes({status: "WIP"})
+  end
+  
 end

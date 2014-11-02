@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141101153226) do
+ActiveRecord::Schema.define(version: 20141102083207) do
 
   create_table "activities", force: true do |t|
     t.string   "name"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20141101153226) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "activity_type"
+    t.integer  "rejected_activity"
   end
 
   create_table "job_activities", force: true do |t|
@@ -40,6 +41,7 @@ ActiveRecord::Schema.define(version: 20141101153226) do
     t.integer  "activity_id"
     t.string   "status",            default: "PENDING"
     t.string   "activity_type"
+    t.integer  "rejected_activity"
   end
 
   create_table "jobs", force: true do |t|
@@ -52,6 +54,7 @@ ActiveRecord::Schema.define(version: 20141101153226) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "capacity"
+    t.string   "job_type"
   end
 
   create_table "users", force: true do |t|

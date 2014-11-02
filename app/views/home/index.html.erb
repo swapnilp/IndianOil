@@ -73,67 +73,27 @@
         <table class="table">
           <thead>
             <tr>
-              <th>40K</th>
+              <th>Name</th>
               <th>Status</th>
-              <th>20K</th>
-              <th>Status</th>
+              <th>Start Date</th>
             </tr>
           </thead>
           <tbody>
+	    <%- @jobs.each do |job| %>
             <tr>
-              <td class="center">12T40k01</td>
+              <td class="center" style="color:#000;"><%= link_to job.name , job_path(job), style: "color:#000;" %></td>
               <td class="center">
                 <span class="label-success label label-default">Active</span>
               </td>
-              <td class="center">12T20k01</td>
-              <td class="center">
-                <span class="label-success label label-default">Active</span>
-              </td>
+              <td class="center" style="color:#000;"><%= job.start_date.to_date %></td>
+              
             </tr>
-            <tr>
-              <td class="center">12T40k02</td>
-              <td class="center">
-                <span class="label-danger label label-default">Banned</span>
-              </td>
-              <td class="center">12T20k02</td>
-              <td class="center">
-                <span class="label-default label label-danger">Banned</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="center">12T40k03</td>
-              <td class="center">
-                <span class="label label label-default">InActive</span>
-              </td>
-              <td class="center">12T20k03</td>
-              <td class="center">
-                <span class="label-default label">Inactive</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="center">12T40k04</td>
-              <td class="center">
-                <span class="label-warning label label-default">Pending</span>
-              </td>
-              <td class="center">12T20k04</td>
-              <td class="center">
-                <span class="label-warning label label-default">Pending</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="center">12T40k05</td>
-              <td class="center">
-                <span class="label-success label label-default">Active</span>
-              </td>
-              <td class="center">12T20k05</td>
-              <td class="center">
-                <span class="label-success label label-default">Active</span>
-              </td>
-            </tr>
+            <%- end %>
           </tbody>
         </table>
-        <ul class="pagination pagination-centered">
-          <li><a href="#">Prev</a></li>
+	<%= will_paginate @jobs %>
+        <ul class="pagination pagination-centered hide">
+	  <li><a href="#">Prev</a></li>
           <li class="active">
             <a href="#">1</a>
           </li>

@@ -6,8 +6,11 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   resources :jobs
   get '/job/:id/job_activity/:job_activity_id' => 'jobs#move_activity', as: 'move_activity'
+  get "/job_activity/:id/done" => "job_activities#done_job", as: "done_job"
+  get "/job_activity/:id/wip" => "job_activities#wip_job", as: "wip_job"
+  get "/job_activity/:id/reject/:rej_id" => "job_activities#reject_job", as: "reject_job"
 
-  root 'jobs#index'
+  root 'home#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

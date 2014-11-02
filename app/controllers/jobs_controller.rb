@@ -20,5 +20,15 @@ class JobsController < ApplicationController
     render json: {success: true, html: render_to_string(:partial => "activity.html.erb", :layout => false, locals: {activity: master_activity, job: job })} 
   end
 
+  def new
+    @job = Job.new
+  end
+
+  def create
+    params.permit!
+    job = Job.new(params[:job])
+    job.save
+    redirect_to jobs_path(job)
+  end
   
 end
