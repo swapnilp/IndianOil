@@ -8,6 +8,9 @@
   <td class="center">
     <span class="label-success label label-default"><%= activity.status %></span>
   </td>
+  <td>
+    <%= activity.activity_type %>
+  </td>
   <td class="center">
     
     <a class="btn btn-info moveActivity" data-href="/job/<%=job.id%>/job_activity/<%=activity.id%>?&act_action=up" onclick="moveActivity(this);"> 

@@ -33,11 +33,14 @@
               <th>Precedence</th>
               <th>Duration</th>                            
               <th>Current Status</th>
+	      <th>Type</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-	    <%= render partial: "activity", locals: {activity: @master_activity, job: @job} %>
+	    <%- @master_activity.each do |master_activity| %>
+	      <%= render partial: "activity", locals: {activity: master_activity, job: @job} %>
+	    <%- end %>
           </tbody>
         </table>
       </div>

@@ -72,5 +72,7 @@ class JobActivity < ActiveRecord::Base
   def wip_job
     self.update_attributes({status: "WIP"})
   end
+
+  
   
 end
