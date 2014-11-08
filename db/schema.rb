@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141102092218) do
+ActiveRecord::Schema.define(version: 20141108110729) do
 
   create_table "activities", force: true do |t|
     t.string   "name"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20141102092218) do
     t.string   "status",            default: "CREATED"
     t.string   "activity_type"
     t.integer  "rejected_activity"
+    t.string   "name"
   end
 
   create_table "jobs", force: true do |t|

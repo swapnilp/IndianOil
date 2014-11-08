@@ -1,0 +1,79 @@
+<div>
+  <ul class="breadcrumb">
+    <li>
+      <a href="#">Home</a>
+    </li>
+    <li>
+      <a href="#">Dashboard</a>
+    </li>
+  </ul>
+</div>
+
+
+<div class="row">
+  <div class="box col-md-12">
+    <div class="box-inner">
+      <div class="box-header well">
+        <h2><i class="glyphicon glyphicon-info-sign"></i> Ongoing Projects</h2>
+
+        <div class="box-icon">
+          <a href="#" class="btn btn-setting btn-round btn-default">
+	    <i class="glyphicon glyphicon-cog"></i>
+	  </a>
+          <a href="#" class="btn btn-minimize btn-round btn-default">
+	    <i class="glyphicon glyphicon-chevron-up"></i>
+	  </a>
+          <a href="#" class="btn btn-close btn-round btn-default">
+	    <i class="glyphicon glyphicon-remove"></i>
+	  </a>
+        </div>
+      </div>
+      <div class="box-content">
+        <input placeholder="Search" class="search-query form-control col-md-10" name="query"
+               type="text">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Action</th>
+	      <th>Further Action</th>
+              <th>Start Date</th>
+	      <th>End Date</th>
+            </tr>
+          </thead>
+          <tbody>
+	    <%- @job_activities.each do |job_activity| %>
+            <tr>
+              <td class="center" style="color:#000;"><%= link_to job_activity.activity.name , job_path(job_activity.job), style: "color:#000;" %></td>
+              <td class="center">
+                <span class="label-success label label-default"><%= link_to "Done" %></span>
+		<%- if job_activity.status != "WIP" %>
+		<span class="label-warning label label-default"><%= link_to "WIP" %></span>
+		<%- end %>
+              </td>
+	      <td>
+		<%= select_tag "reject", options_from_collection_for_select(job_activity.job.job_activities.done_activity, "id", "name"), prompt: "Select something", class: "col-md-6", id: "reject_#{job_activity.id}", style: "color:#000;" %>
+		<%= link_to "Reject", "#", style: "color:#000;" %>
+	      </td>
+              <td class="center" style="color:#000;"><%= job_activity.start_date.to_date %></td>
+	      <td class="center" style="color:#000;"><%= job_activity.end_date.to_date %></td>
+            </tr>
+            <%- end %>
+          </tbody>
+        </table>
+	<%= will_paginate @job_activities %>
+        <ul class="pagination pagination-centered hide">
+	  <li><a href="#">Prev</a></li>
+          <li class="active">
+            <a href="#">1</a>
+          </li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">Next</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+

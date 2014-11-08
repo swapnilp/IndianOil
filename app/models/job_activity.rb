@@ -5,6 +5,7 @@ class JobActivity < ActiveRecord::Base
   belongs_to :job
   belongs_to :activity
   scope :master_activity, lambda{ where(previous_activity: nil) }
+  scope :done_activity, lambda{ where(status: "DONE") }
 
 
   def move_next
