@@ -46,9 +46,9 @@
             <tr>
               <td class="center" style="color:#000;"><%= link_to job_activity.activity.name , job_path(job_activity.job), style: "color:#000;" %></td>
               <td class="center">
-                <span class="label-success label label-default"><%= link_to "Done" %></span>
+                <span class="label-success label label-default"><%= link_to "Done", done_job_path(job_activity) %></span>
 		<%- if job_activity.status != "WIP" %>
-		<span class="label-warning label label-default"><%= link_to "WIP" %></span>
+		<span class="label-warning label label-default"><%= link_to "WIP", wip_job_path(job_activity) %></span>
 		<%- end %>
               </td>
 	      <td>

@@ -55,8 +55,11 @@ class JobActivity < ActiveRecord::Base
   end
   
   def done_job
-    self.update_attributes({status: "DONE"})
-    self.next_activity.update_attributes({status: "PENDING"}) if self.next_activity.present?
+    self.update_attributes!({status: "done"})
+    if self.next_activity.present?
+      self.next_activity.update_attributes({status: "PENDING"}) 
+    end
+    
   end
 
   def rejected_job(rej_id)
