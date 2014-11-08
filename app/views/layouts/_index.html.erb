@@ -19,7 +19,9 @@
       <ul class="dropdown-menu">
         <li><a href="#">Profile</a></li>
         <li class="divider"></li>
-        <li><a href="login.html">Logout</a></li>
+	<li>
+	  <%= link_to 'Logout', "/users/sign_out", :method => :delete %>
+	</li>
       </ul>
     </div>
     <!-- user dropdown ends -->
