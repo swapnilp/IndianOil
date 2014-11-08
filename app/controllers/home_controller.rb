@@ -1,5 +1,4 @@
 class HomeController < ApplicationController
-
   def index
     if current_user.id != 1
       redirect_to "/dashboard"
