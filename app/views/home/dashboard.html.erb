@@ -35,6 +35,7 @@
           <thead>
             <tr>
               <th>Name</th>
+	      <th>Type</th>
               <th>Action</th>
 	      <th>Further Action</th>
               <th>Start Date</th>
@@ -45,6 +46,9 @@
 	    <%- @job_activities.each do |job_activity| %>
             <tr>
               <td class="center" style="color:#000;"><%= link_to job_activity.activity.name , job_path(job_activity.job), style: "color:#000;" %></td>
+	      <td>
+		<%= job_activity.activity_type %>
+	      </td>
               <td class="center">
                 <span class="label-success label label-default"><%= link_to "Done", done_job_path(job_activity) %></span>
 		<%- if job_activity.status != "WIP" %>
