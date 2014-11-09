@@ -35,6 +35,7 @@
           <thead>
             <tr>
               <th>Name</th>
+	      <th>Job</th>
 	      <th>Type</th>
               <th>Action</th>
 	      <th>Further Action</th>
@@ -46,6 +47,7 @@
 	    <%- @job_activities.each do |job_activity| %>
             <tr>
               <td class="center" style="color:#000;"><%= link_to job_activity.activity.name , job_path(job_activity.job), style: "color:#000;" %></td>
+	      <td style="color:#000;"><%= job_activity.job.name %></td>
 	      <td style="color:#000;">
 		<%= job_activity.activity_type %>
 	      </td>
